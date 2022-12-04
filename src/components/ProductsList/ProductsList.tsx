@@ -39,7 +39,6 @@ display: flex;
 `
 
 export const LinkStyle = styled.div`
-  width: 33%;
   margin-bottom: 40px;
 
   @media(max-width: 900px) {
@@ -69,11 +68,11 @@ export const ProductsList = () => {
 
     <Container>
       <Backet />
-      <Row>
+      <Row style={{ justifyContent: 'center' }}>
         {
           data.map((el: Product) => {
             return (
-              <LazyLoad height={762} width={400} key={el.id}>
+              <LazyLoad height={500} width={400} key={el.id}>
                 <LinkStyle>
                   <Link to={`product/${el.id}`} style={{ textDecoration: 'none', color: 'black', fontFamily: 'TildaSans, Arial, sans-serif' }}>
                     <Col >

@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dim04ka.github.io",
+  "homepage": ".",
   "dependencies": {
     "@emailjs/browser": "^3.9.0",
     "@emotion/react": "^11.10.5",
@@ -30,6 +30,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.1",
     "react-imask": "^6.4.3",
+    "react-lazy-load": "^4.0.1",
     "react-number-format": "^5.1.1",
     "react-redux": "^8.0.4",
     "react-router": "^6.4.2",

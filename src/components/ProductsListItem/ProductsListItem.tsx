@@ -7,7 +7,7 @@ export const ProductsListItem = ({ title, description, photo, price }: Product) 
     <>
       <CardStyle>
         <div style={{ height: 280, overflow: 'hidden' }}>
-          <Card.Img variant="top" src={photo} style={{ minHeight: '100%' }} />
+          <Card.Img variant="top" src={photo} style={{ height: '100%', width: 'auto' }} />
         </div>
         <CardBody>
           <Card.Body>

@@ -11,6 +11,13 @@ transition: .3s;
   
   transform: scale(1.1);
 }
+
+@media(max-width: 900px){
+  &:hover img{
+  
+    transform: none;
+  }
+}
   
 `
 

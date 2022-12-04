@@ -8,6 +8,7 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+import LazyLoad from 'react-lazy-load';
 
 import { useAppSelector } from '../../hooks'
 import styled from 'styled-components'
@@ -68,24 +69,22 @@ export const ProductsList = () => {
 
     <Container>
       <Backet />
-
-
       <Row>
         {
           data.map((el: Product) => {
             return (
-              <LinkStyle key={el.id}>
-                <Link to={`product/${el.id}`} style={{ textDecoration: 'none', color: 'black', fontFamily: 'TildaSans, Arial, sans-serif' }}>
-                  <Col >
-                    <ProductsListItem {...el} />
-                  </Col>
-                </Link>
-              </LinkStyle>
-
+              <LazyLoad height={762} width={400} key={el.id}>
+                <LinkStyle>
+                  <Link to={`product/${el.id}`} style={{ textDecoration: 'none', color: 'black', fontFamily: 'TildaSans, Arial, sans-serif' }}>
+                    <Col >
+                      <ProductsListItem {...el} />
+                    </Col>
+                  </Link>
+                </LinkStyle>
+              </LazyLoad>
             )
           })
         }
-
       </Row>
     </Container>
     <Box pt={5} justifyItems="center" alignItems="center" >

@@ -59,6 +59,18 @@ const ButtonStyle = styled(Button)`
     font-size: 12px !important;
 `
 
+const Popup = styled.div`
+  padding: 40px 70px;
+`
+
+const PopupDescription = styled.div`
+  padding-top: 50px;
+  padding-bottom: 15px;
+  font-size: 25px;
+`
+
+
+
 type FormValues = {
   textmask: string;
   email: string;
@@ -153,10 +165,11 @@ export default function BasicModal() {
       <Modal show={show} onHide={handleClose}>
         {
           isSend ?
-            (<>
+            (<Popup>
               <h2>Ваш заказ создан</h2>
-              <div> Мы позвоним вам {values.textmask}</div>
-            </>
+              <PopupDescription>Спасибо Мы позвоним</PopupDescription>
+              <span>{values.textmask}</span>
+            </Popup>
             ) : (
 
               <>

@@ -111,7 +111,7 @@ const OrderLine = ({ id, count }: OrderLineProps) => {
 
   return (
     <Wrapper>
-      <Image src={photo} />
+      <Image src={photo[0]} />
       <WrapperOrder>
         <BoxOne>
           <Title>{title}</Title>

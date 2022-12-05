@@ -39,12 +39,17 @@ display: flex;
 `
 
 export const LinkStyle = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+`;
+
+const Item = styled.div`
+  width: 33%;
 
   @media(max-width: 900px) {
-    width: 100%
+    width: 50%
   }
-`;
+
+`
 
 export const ProductsList = () => {
 
@@ -72,15 +77,15 @@ export const ProductsList = () => {
         {
           data.map((el: Product) => {
             return (
-              <LazyLoad height={500} width={400} key={el.id}>
+              <Item key={el.id}>
                 <LinkStyle key={el.id}>
                   <Link to={`product/${el.id}`} style={{ textDecoration: 'none', color: 'black', fontFamily: 'TildaSans, Arial, sans-serif' }}>
-                    <Col >
-                      <ProductsListItem {...el} />
-                    </Col>
+
+                    <ProductsListItem {...el} />
+
                   </Link>
                 </LinkStyle>
-              </LazyLoad>
+              </Item>
             )
           })
         }

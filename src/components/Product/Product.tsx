@@ -175,7 +175,7 @@ export const Product = () => {
       </ReturnBlock>
       <MainBlock>
         <PhotoStyle>
-          <img src={product.photo} alt={product.title} />
+          <img src={product.photo[0]} alt={product.title} />
         </PhotoStyle>
         <ContentStyle>
           <TitleStyle>{product.title}</TitleStyle>

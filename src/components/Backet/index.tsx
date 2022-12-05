@@ -28,6 +28,7 @@ transition: .3s;
 `
 
 const Basket = styled.div`
+  z-index: 9;
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -82,13 +83,12 @@ export const Backet = () => {
   const dispatch = useDispatch()
   const handleClick = () => {
     dispatch(displayModal({ isShow: true }))
-    console.log('1111')
   }
   return (
     <>
       {
         !!state.orders.orders.length && (
-          <Basket onClick={handleClick} title={'HEllo'}>
+          <Basket onClick={handleClick} title={'Bucket'}>
             <ShoppingBasketIcon />
             <CountProducts>{state.orders.orders.length}</CountProducts>
             <AmountPrice>= {state.orders.amount} gel</AmountPrice>

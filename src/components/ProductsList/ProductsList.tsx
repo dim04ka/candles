@@ -73,7 +73,7 @@ export const ProductsList = () => {
           data.map((el: Product) => {
             return (
               <LazyLoad height={500} width={400} key={el.id}>
-                <LinkStyle>
+                <LinkStyle key={el.id}>
                   <Link to={`product/${el.id}`} style={{ textDecoration: 'none', color: 'black', fontFamily: 'TildaSans, Arial, sans-serif' }}>
                     <Col >
                       <ProductsListItem {...el} />

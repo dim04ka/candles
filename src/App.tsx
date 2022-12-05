@@ -8,6 +8,7 @@ import {
   RouterProvider,
   Route,
   Link,
+  Navigate
 } from "react-router-dom";
 
 import { useAppSelector } from './hooks'
@@ -20,15 +21,18 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <ProductsList />,
+    errorElement: <Navigate to="/" />
   },
   {
     path: "about",
     element: <div>About</div>,
+    errorElement: <Navigate to="/" />
   },
   {
     path: "product/:id",
-    element: <Product />
-  }
+    element: <Product />,
+    errorElement: <Navigate to="/" />
+  },
 ]);
 
 function App() {

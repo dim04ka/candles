@@ -36,3 +36,171 @@
     transform: rotate(360deg);
   }
 }
+
+.svechi,
+.doma {
+  font-weight: bold;
+  font-size: 33px;
+  font-family: fantasy;
+  letter-spacing: 8px;
+}
+
+.animate.entering {
+  animation: startShowTitle 1.5s forwards;
+}
+
+.animate.entered {
+  /* animation: startShowTitle 0.5s ; */
+}
+
+.animate.exiting {
+}
+
+.animate.exited {
+}
+
+@keyframes startShowTitle {
+  0% {
+    opacity: 0;
+    position: relative;
+    right: 150px;
+  }
+  50% {
+    opacity: 1;
+    position: relative;
+    right: 0px;
+  }
+}
+
+.svechi.entering {
+  animation: svechiEntering 1s forwards;
+}
+
+.svechi.entered {
+  animation: startSvechi 4s linear 2s infinite alternate;
+}
+
+.svechi.exiting {
+}
+
+.svechi.exited {
+}
+
+@keyframes svechiEntering {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes startSvechi {
+  0% {
+    position: relative;
+    right: -50px;
+  }
+  100% {
+    position: relative;
+    right: 0px;
+  }
+}
+
+.doma.entering {
+  /* animation: startSvechi 1s forwards; */
+  animation: domaEntering 1s linear;
+}
+
+.doma.entered {
+  animation: domaEntered 4s linear 2s infinite alternate;
+}
+
+.doma.exiting {
+}
+
+.doma.exited {
+}
+
+@keyframes domaEntering {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes domaEntered {
+  0% {
+    position: relative;
+    right: 50px;
+  }
+  100% {
+    position: relative;
+    right: 0px;
+  }
+}
+
+.block-logo {
+  border: 1px solid red;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.block-logo.entered {
+  animation: blocklogoEntered 4s linear 2s infinite alternate;
+}
+
+@keyframes blocklogoEntered {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-down-to-up.entering {
+  /* animation: startSvechi 1s forwards; */
+  animation: animation1 0.3s linear;
+}
+
+.animate-down-to-up.entered {
+  /* animation: animation1 4s linear 2s infinite alternate; */
+}
+
+.animate-down-to-up.exiting {
+}
+
+.animate-down-to-up.exited {
+}
+
+@keyframes animation1 {
+  0% {
+    position: relative;
+    top: 50px;
+  }
+  100% {
+    position: relative;
+    top: 0px;
+  }
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 44px;
+  top: -54px;
+  animation: App-logo-spin 4s linear 2s infinite;
+}
+
+.logo2 {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 70px;
+  top: -27px;
+  animation: App-logo-spin 4s linear 2s reverse infinite;
+}

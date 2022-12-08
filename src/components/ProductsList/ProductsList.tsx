@@ -1,5 +1,5 @@
 
-
+import { useState } from 'react'
 import Animate from '../../hocs/animate'
 
 import { ProductsListItem } from '../ProductsListItem'
@@ -16,9 +16,12 @@ import { Box, Typography } from '@mui/material'
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
-import Logo from '../../logo.png'
+import Logo from '../../images/logo.webp'
 import lineImg from '../../images/line.webp'
-
+import flagRu from '../../images/flag_ru.png'
+import flagEn from '../../images/flag_en.png'
+import flagGe from '../../images/flag_ge.png'
+import { useTranslation } from 'react-i18next';
 
 const Wrapper = styled.ul`
 display: flex;
@@ -50,17 +53,42 @@ const Item = styled.div`
 
 `
 
-
+const FlagRu = styled.img`
+  width: 30px;
+  height: 25px;
+`
+const ButtonFlag = styled.button`
+border: none;
+    background: transparent;
+`
 
 
 export const ProductsList = () => {
 
   const data: Product[] = useAppSelector((state) => state.products.products)
+  const [language, setLanguage] = useState('ru')
+  const { t, i18n } = useTranslation();
 
-
+  const handleClick = (language: string): void => {
+    i18n.changeLanguage(language)
+    setLanguage(language)
+  };
   return (
     <div>
+      <Box pt={2}>
+        {
+          language !== 'ru' && <ButtonFlag onClick={() => handleClick('ru')}><FlagRu src={flagRu} /></ButtonFlag>
+        }
+        {
+          language !== 'en' && <ButtonFlag onClick={() => handleClick('en')}><FlagRu src={flagEn} /></ButtonFlag>
+        }
+        {
+          language !== 'ge' && <ButtonFlag onClick={() => handleClick('ge')}><FlagRu src={flagGe} /></ButtonFlag>
+        }
 
+
+
+      </Box>
       <Box pt={5}>
         <a href="/" style={{ position: 'relative' }}>
           <img style={{ width: 200 }} src={Logo} alt="logo" />
@@ -69,24 +97,24 @@ export const ProductsList = () => {
         </a>
       </Box>
       <Animate classNames="animate" timeout={500}>
-        <h1>Свечи ручной работы Тбилиси Грузия</h1>
+        <h1>{t('h1')}</h1>
       </Animate>
       <Box pt={5} pb={5} justifyItems="center" alignItems="center" >
         {/* <Animate classNames="animate" timeout={400}> */}
         <Typography variant="subtitle1" component="h2" style={{ maxWidth: 700, margin: '0 auto' }}>
-          Мы создаем не просто свечи, мы создаем настроение!
+          {t('we_create')}
         </Typography>
         {/* </Animate> */}
 
         {/* <Animate classNames="animate" timeout={300}> */}
         <Typography variant="subtitle1" component="h6" style={{ maxWidth: 900, margin: '0 auto' }}>
-          Все свечи, представленные в нашем магазине, не содержат парафин, свинец, бензол  и иных небезопасных веществ.
+          {t('all_candles')}
         </Typography>
         {/* </Animate> */}
 
         {/* <Animate classNames="animate" timeout={200}> */}
         <Typography variant="subtitle1" component="h6" style={{ maxWidth: 600, margin: '0 auto' }}>
-          Только натуральные ингредиенты, безопасные для всей семьи.
+          {t('only_natural')}
         </Typography>
         {/* </Animate> */}
       </Box>
@@ -118,7 +146,8 @@ export const ProductsList = () => {
       <Animate classNames="animate-down-to-up" timeout={500}>
         <Box pt={5} justifyItems="center" alignItems="center" >
           <Typography variant="subtitle1" component="h6" style={{ maxWidth: 500, margin: '0 auto', marginBottom: 50 }}>
-            По любым вопросам и для заказа свяжитесь с нами по телефону, почте и в соцсетях.
+            {t('any_question')}
+
           </Typography>
           <Wrapper>
             <li>

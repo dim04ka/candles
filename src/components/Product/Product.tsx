@@ -14,6 +14,7 @@ import Arrow from './image/arrow.png'
 import CloseIcon from './image/closeIcon.png'
 
 import { displayModal } from '../../store/modal'
+import Animate from '../../hocs/animate'
 
 const bounceAnimation = keyframes`${fadeInLeft}`;
 
@@ -174,17 +175,22 @@ export const Product = () => {
         <span>Все товары</span>
       </ReturnBlock>
       <MainBlock>
-        <PhotoStyle>
-          <img src={product.photo[0]} alt={product.title} />
-        </PhotoStyle>
-        <ContentStyle>
-          <TitleStyle>{product.title}</TitleStyle>
-          <PriceStyle>{product.price} gel</PriceStyle>
+        <Animate classNames="animate-photo" timeout={500}>
+          <PhotoStyle>
+            <img src={product.photo[0]} alt={product.title} />
+          </PhotoStyle>
+        </Animate>
+        <Animate classNames="animate-left-right" timeout={500}>
+          <ContentStyle>
+            <TitleStyle>{product.title}</TitleStyle>
+            <PriceStyle>{product.price} gel</PriceStyle>
 
-          <ButtonStyle onClick={handleClick}>Добавить в корзину</ButtonStyle>
+            <ButtonStyle onClick={handleClick}>Добавить в корзину</ButtonStyle>
 
-          <DescriptionStyle>{product.description}</DescriptionStyle>
-        </ContentStyle>
+            <DescriptionStyle>{product.description}</DescriptionStyle>
+          </ContentStyle>
+        </Animate>
+
 
         {/* <Link to="/" src={CloseIcon} role={CloseButton} /> */}
 

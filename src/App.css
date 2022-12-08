@@ -187,6 +187,17 @@
   }
 }
 
+@keyframes animation2 {
+  0% {
+    position: relative;
+    right: -50px;
+  }
+  100% {
+    position: relative;
+    right: 0px;
+  }
+}
+
 .logo {
   width: 100px;
   height: 100px;
@@ -203,4 +214,14 @@
   left: 70px;
   top: -27px;
   animation: App-logo-spin 4s linear 2s reverse infinite;
+}
+
+.animate-photo.entering {
+  /* animation: startSvechi 1s forwards; */
+  animation: animation1 0.1s linear;
+}
+
+.animate-left-right.entering {
+  /* animation: startSvechi 1s forwards; */
+  animation: animation2 0.2s linear;
 }

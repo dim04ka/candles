@@ -91,7 +91,7 @@ export const Backet = () => {
           <Basket onClick={handleClick} title={'Bucket'}>
             <ShoppingBasketIcon />
             <CountProducts>{state.orders.orders.length}</CountProducts>
-            <AmountPrice>= {state.orders.amount} gel</AmountPrice>
+            <AmountPrice>= {state.orders.amount} ₾</AmountPrice>
           </Basket>
         )
       }

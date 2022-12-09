@@ -142,14 +142,36 @@ const ButtonStyle = styled.button`
 // `
 
 
+const PhotoGalery = styled.div`
+  padding-top: 10px;
 
+  & img {
+    object-fit: cover;
+    object-position: center center;
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+  }
 
+  & img:hover {
+    cursor: pointer;
+  }
+`
 
+interface IsActiveProps {
+  isActive: boolean;
+}
+
+const Image = styled.img`
+  box-shadow: ${({ isActive }: IsActiveProps) => isActive ? '1px 1px 5px black' : 'none'} ;
+`
 
 export const Product = () => {
   let { id } = useParams();
   const data = useAppSelector((state) => state.products.products)
   const state = useAppSelector((state) => state)
+
+  const [activeImage, setActiveImage] = useState('')
   const [product] = data.filter((el: ProductType) => el.id === Number(id))
 
   const dispatch = useDispatch()
@@ -166,6 +188,14 @@ export const Product = () => {
   }, [])
 
 
+  const handleActiveImage = (image: string) => {
+    setActiveImage(image)
+  }
+
+  useEffect(() => {
+    setActiveImage(product.photo[0])
+  }, [])
+
   return (
     // <BouncyDiv>
     // <Block>
@@ -177,13 +207,30 @@ export const Product = () => {
       <MainBlock>
         <Animate classNames="animate-photo" timeout={500}>
           <PhotoStyle>
-            <img src={product.photo[0]} alt={product.title} />
+            <img src={activeImage} alt={product.title} />
           </PhotoStyle>
+          <PhotoGalery>
+            {
+              product.photo.length > 1 && product.photo.map(image => {
+                return (
+
+                  <Image
+                    src={image}
+                    alt={image}
+                    key={image}
+                    onClick={() => handleActiveImage(image)}
+                    isActive={activeImage === image}
+                  />
+
+                )
+              })
+            }
+          </PhotoGalery>
         </Animate>
         <Animate classNames="animate-left-right" timeout={500}>
           <ContentStyle>
             <TitleStyle>{product.title}</TitleStyle>
-            <PriceStyle>{product.price} gel</PriceStyle>
+            <PriceStyle>{product.price} ₾</PriceStyle>
 
             <ButtonStyle onClick={handleClick}>Добавить в корзину</ButtonStyle>
 

@@ -4,6 +4,9 @@ export const CardStyle = styled.div`
 heigth: 300px;
 
 transition: .3s;
+position: relative;
+
+
 & img {
   transition: .3s;
 }

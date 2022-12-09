@@ -183,7 +183,7 @@ export default function BasicModal() {
                   }
 
                   <hr />
-                  <div style={{ textAlign: 'right', marginBottom: 50 }}>Сумма: {state.orders.amount} gel</div>
+                  <div style={{ textAlign: 'right', marginBottom: 50 }}>Сумма: {state.orders.amount} ₾</div>
 
 
                   <form onSubmit={onSubmit} ref={form}>

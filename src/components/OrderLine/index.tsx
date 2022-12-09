@@ -121,7 +121,7 @@ const OrderLine = ({ id, count }: OrderLineProps) => {
           <TotalCount>{count}</TotalCount>
           <button onClick={increaseHandle}>+</button>
 
-          <Price>{getPrice} gel</Price>
+          <Price>{getPrice} ₾</Price>
         </BoxTwo>
       </WrapperOrder>
       <button onClick={removeHandle}>X</button>

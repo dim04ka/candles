@@ -5,4 +5,9 @@ export interface Product {
   price: string;
   description: string;
   photo: string[];
+  tooltip?: {
+    title: string;
+    color: string;
+    active: boolean
+  };
 }

@@ -225,3 +225,8 @@
   /* animation: startSvechi 1s forwards; */
   animation: animation2 0.2s linear;
 }
+
+.animate-right.entering {
+  /* animation: startSvechi 1s forwards; */
+  animation: animation2 1.5s forwards;
+}

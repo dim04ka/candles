@@ -72,6 +72,7 @@ export const ProductsList = () => {
   const handleClick = (language: string): void => {
     i18n.changeLanguage(language)
     setLanguage(language)
+    localStorage.setItem('language', language)
   };
   return (
     <div>
@@ -100,46 +101,44 @@ export const ProductsList = () => {
         <h1>{t('h1')}</h1>
       </Animate>
       <Box pt={5} pb={5} justifyItems="center" alignItems="center" >
-        {/* <Animate classNames="animate" timeout={400}> */}
-        <Typography variant="subtitle1" component="h2" style={{ maxWidth: 700, margin: '0 auto' }}>
-          {t('we_create')}
-        </Typography>
-        {/* </Animate> */}
+        <Animate classNames="animate animate-right" timeout={500}>
+          <Typography variant="subtitle1" component="h2" style={{ maxWidth: 700, margin: '0 auto' }}>
+            {t('we_create')}
+          </Typography>
+        </Animate>
 
-        {/* <Animate classNames="animate" timeout={300}> */}
-        <Typography variant="subtitle1" component="h6" style={{ maxWidth: 900, margin: '0 auto' }}>
-          {t('all_candles')}
-        </Typography>
-        {/* </Animate> */}
+        <Animate classNames="animate" timeout={500}>
+          <Typography variant="subtitle1" component="h6" style={{ maxWidth: 900, margin: '0 auto' }}>
+            {t('all_candles')}
+          </Typography>
+        </Animate>
 
-        {/* <Animate classNames="animate" timeout={200}> */}
-        <Typography variant="subtitle1" component="h6" style={{ maxWidth: 600, margin: '0 auto' }}>
-          {t('only_natural')}
-        </Typography>
-        {/* </Animate> */}
+        <Animate classNames="animate animate-right" timeout={500}>
+          <Typography variant="subtitle1" component="h6" style={{ maxWidth: 600, margin: '0 auto' }}>
+            {t('only_natural')}
+          </Typography>
+        </Animate>
       </Box>
 
       <Container>
         <Backet />
-        <Animate classNames="animate-down-to-up" timeout={500}>
-          <Row style={{ justifyContent: 'center' }}>
-            {
-              data.map((el: Product) => {
-                return (
-                  <Item key={el.id}>
-                    <LinkStyle key={el.id}>
-                      <Link to={`product/${el.id}`} style={{ textDecoration: 'none', color: 'black', fontFamily: 'TildaSans, Arial, sans-serif' }}>
+        <Row style={{ justifyContent: 'center' }}>
+          {
+            data.map((el: Product) => {
+              return (
+                <Item key={el.id}>
+                  <LinkStyle key={el.id}>
+                    <Link to={`product/${el.id}`} style={{ textDecoration: 'none', color: 'black', fontFamily: 'TildaSans, Arial, sans-serif' }}>
 
-                        <ProductsListItem {...el} />
+                      <ProductsListItem {...el} />
 
-                      </Link>
-                    </LinkStyle>
-                  </Item>
-                )
-              })
-            }
-          </Row>
-        </Animate>
+                    </Link>
+                  </LinkStyle>
+                </Item>
+              )
+            })
+          }
+        </Row>
       </Container>
 
 

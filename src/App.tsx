@@ -7,7 +7,7 @@ import {
   createBrowserRouter,
   RouterProvider,
   Navigate
-} from "react-router-dom";
+} from 'react-router-dom';
 import { Box } from '@mui/material'
 
 import { useAppSelector } from './hooks'

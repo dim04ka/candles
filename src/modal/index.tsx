@@ -10,6 +10,8 @@ import { useAppSelector } from '../hooks'
 import { displayModal } from '../store/modal'
 import { reset } from '../store/orders'
 
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+
 import OrderLine from '../components/OrderLine'
 import styled from 'styled-components'
 import { useForm, Resolver } from 'react-hook-form';
@@ -22,6 +24,8 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 
 import { send } from 'emailjs-com';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -59,14 +63,36 @@ const ButtonStyle = styled(Button)`
     font-size: 12px !important;
 `
 
+const IconSuccess = styled(CheckCircleOutlineIcon)`
+width: 70px !important;
+height: 70px !important;
+display: flex !important;
+margin: 0 auto !important;
+fill: green !important;
+`
+
 const Popup = styled.div`
   padding: 40px 70px;
+  text-align: center;
 `
 
 const PopupDescription = styled.div`
   padding-top: 50px;
   padding-bottom: 15px;
   font-size: 25px;
+`
+
+const CloseButton = styled(CloseIcon)`
+width: 50px !important;
+    height: 50px !important;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    transition: all .3s !important;
+    &:hover {
+      transform: rotate(180deg) !important;
+    }
 `
 
 
@@ -78,39 +104,20 @@ type FormValues = {
 
 };
 
-const resolver: Resolver<FormValues> = async (values) => {
-  return {
-    values: values.textmask ? values : {},
-    errors: !values.textmask
-      ? {
-        textmask: {
-          type: 'required',
-          message: 'This is required.',
-        },
-      }
-      : {},
-  };
-};
-
 export default function BasicModal() {
-  const ref: any = useRef()
   const dispatch = useDispatch()
   const state = useAppSelector((state) => state) // [{}, {}]
-  // const products = useAppSelector((state) => state.products.products) // [{}. {}]
-
-  // const [show, setShow] = useState(true);
 
   const show = state.modal.isShow
 
   const handleClose = () => {
     dispatch(displayModal({ isShow: false }))
-    clearTimeout(ref.current);
 
   }
   const form: any = useRef();
 
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+  const { register, handleSubmit, getValues, formState: { errors } } = useForm<FormValues>();
   const onSubmit = handleSubmit((data) => {
     setIsSend(true)
 
@@ -124,18 +131,11 @@ export default function BasicModal() {
 
     send('service_ogwt80f', 'template_7jvuass', toSend, 'fr-wuu4TadkXDU0-p')
       .then((result) => {
-        console.log(result.text);
-        dispatch(reset())
+        // console.log(result.text);
       }, (error) => {
-        console.log(error.text);
+        // console.log(error.text);
       });
-
-    ref.current = setTimeout(() => {
-      setIsSend(false)
-      handleClose()
-    }, 3000)
   });
-  console.log('errors', errors)
 
   const [isSend, setIsSend] = useState(false)
 
@@ -151,10 +151,14 @@ export default function BasicModal() {
     });
   };
 
+  const handleCloseOrder = (e: any) => {
+    e.preventDefault();
+    dispatch(reset())
+  }
+
 
 
   useEffect(() => {
-    console.log('tate.modal.isShow', state.modal.isShow)
     if (!state.orders.orders.length) dispatch(displayModal(false))
   }, [state.orders.orders])
 
@@ -164,8 +168,10 @@ export default function BasicModal() {
         {
           isSend ?
             (<Popup>
+              <CloseButton onClick={handleCloseOrder} />
               <h2>Ваш заказ создан</h2>
-              <PopupDescription>Спасибо Мы позвоним</PopupDescription>
+              <IconSuccess />
+              <PopupDescription>{getValues('name')} Мы свяжемся с вами в ближайшее время</PopupDescription>
               <span>{values.textmask}</span>
             </Popup>
             ) : (

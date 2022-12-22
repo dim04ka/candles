@@ -71,7 +71,7 @@ export const ProductsListItem = ({ title, description, photo, price, tooltip }: 
   return (
     <>
       <CardStyle>
-        {tooltip?.title && <CardToltip color={tooltip.color}>{tooltip.title}</CardToltip>}
+        {tooltip?.active && tooltip?.title && <CardToltip color={tooltip.color}>{tooltip.title}</CardToltip>}
         <Wrapper onMouseEnter={handleHover} onMouseLeave={handleHoverLeave}>
           <LazyLoadImage src={getUrlPhoto} alt={description} />
         </Wrapper>

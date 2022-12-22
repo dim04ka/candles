@@ -13,7 +13,7 @@ import { Box } from '@mui/material'
 import { useAppSelector } from './hooks'
 import Modal from './modal'
 import { initLocalStorage } from './utils'
-
+import { HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
@@ -41,14 +41,18 @@ function App() {
   }, [])
 
   return (
+    <>
+      <HelmetProvider>
+        <div className="App">
 
-    <div className="App">
-      {
-        state.modal.isShow && <Modal />
-      }
-      <RouterProvider router={router} />
-    </div>
+          {
+            state.modal.isShow && <Modal />
+          }
+          <RouterProvider router={router} />
+        </div>
+      </HelmetProvider>
 
+    </>
   );
 }
 

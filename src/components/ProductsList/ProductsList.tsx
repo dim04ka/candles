@@ -22,7 +22,7 @@ import flagRu from '../../images/flag_ru.png'
 import flagEn from '../../images/flag_en.png'
 import flagGe from '../../images/flag_ge.png'
 import { useTranslation } from 'react-i18next';
-
+import { Helmet } from 'react-helmet-async';
 const Wrapper = styled.ul`
 display: flex;
     align-items: center;
@@ -66,7 +66,7 @@ border: none;
 export const ProductsList = () => {
 
   const data: Product[] = useAppSelector((state) => state.products.products)
-  const [language, setLanguage] = useState('ru')
+  const [_, setLanguage] = useState('ru')
   const { t, i18n } = useTranslation();
 
   const handleClick = (language: string): void => {
@@ -74,18 +74,24 @@ export const ProductsList = () => {
     setLanguage(language)
     localStorage.setItem('language', language)
   };
+
+  const contentString = `${t('h1')}  ${t('we_create')} ${t('all_candles')} ${t('only_natural')} `
   return (
     <div>
+      <Helmet>
+        <title>Свечи ручной работы Тбилиси Грузия</title>
+        <meta name='description' content={contentString} />
+      </Helmet>
       <Box pt={2}>
-        {
-          language !== 'ru' && <ButtonFlag onClick={() => handleClick('ru')}><FlagRu src={flagRu} /></ButtonFlag>
-        }
-        {
-          language !== 'en' && <ButtonFlag onClick={() => handleClick('en')}><FlagRu src={flagEn} /></ButtonFlag>
-        }
-        {
-          language !== 'ge' && <ButtonFlag onClick={() => handleClick('ge')}><FlagRu src={flagGe} /></ButtonFlag>
-        }
+
+        <ButtonFlag onClick={() => handleClick('ru')}><FlagRu src={flagRu} /></ButtonFlag>
+
+
+        <ButtonFlag onClick={() => handleClick('en')}><FlagRu src={flagEn} /></ButtonFlag>
+
+
+        <ButtonFlag onClick={() => handleClick('ge')}><FlagRu src={flagGe} /></ButtonFlag>
+
 
 
 

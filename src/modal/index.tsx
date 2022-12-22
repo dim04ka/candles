@@ -110,18 +110,16 @@ export default function BasicModal() {
   const form: any = useRef();
 
 
-  const { register, handleSubmit, getValues, formState: { errors } } = useForm<FormValues>();
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
   const onSubmit = handleSubmit((data) => {
-    console.log('data', data)
     setIsSend(true)
-    console.log(form.current)
 
+    const { email, name, textmask } = data;
 
     const toSend = {
-      text: `Price:`,
-      name: getValues("name"),
-      email: getValues("email"),
-      phone: getValues("textmask")
+      text: `${textmask} заказ: ${JSON.stringify(state.orders)}`,
+      name: name,
+      email: email,
     }
 
     send('service_ogwt80f', 'template_7jvuass', toSend, 'fr-wuu4TadkXDU0-p')

@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 import { increase } from '../../store/orders'
 import Arrow from './image/arrow.png'
 import CloseIcon from './image/closeIcon.png'
-
+import { Helmet } from 'react-helmet-async';
 import { displayModal } from '../../store/modal'
 import Animate from '../../hocs/animate'
 
@@ -169,7 +169,6 @@ const Image = styled.img`
 export const Product = () => {
   let { id } = useParams();
   const data = useAppSelector((state) => state.products.products)
-  const state = useAppSelector((state) => state)
 
   const [activeImage, setActiveImage] = useState('')
   const [product] = data.filter((el: ProductType) => el.id === Number(id))
@@ -196,60 +195,62 @@ export const Product = () => {
     setActiveImage(product.photo[0])
   }, [])
 
+  const contentString = `${product.title} ${product.description}`
+
   return (
     // <BouncyDiv>
-    // <Block>
-    <Wrapper>
-      <ReturnBlock to="/" >
-        <ArrowStyle src={Arrow} alt="arrow" />
-        <span>Все товары</span>
-      </ReturnBlock>
-      <MainBlock>
-        <Animate classNames="animate-photo" timeout={500}>
-          <PhotoStyle>
-            <img src={activeImage} alt={product.title} />
-          </PhotoStyle>
-          <PhotoGalery>
-            {
-              product.photo.length > 1 && product.photo.map(image => {
-                return (
-
-                  <Image
-                    src={image}
-                    alt={image}
-                    key={image}
-                    onClick={() => handleActiveImage(image)}
-                    isActive={activeImage === image}
-                  />
-
-                )
-              })
-            }
-          </PhotoGalery>
-        </Animate>
-        <Animate classNames="animate-left-right" timeout={500}>
-          <ContentStyle>
-            <TitleStyle>{product.title}</TitleStyle>
-            <PriceStyle>{product.price} ₾</PriceStyle>
-
-            <ButtonStyle onClick={handleClick}>Добавить в корзину</ButtonStyle>
-
-            <DescriptionStyle>{product.description}</DescriptionStyle>
-          </ContentStyle>
-        </Animate>
+    <>
+      <Helmet>
+        <title>{product.title}</title>
+        <meta name='description' content={contentString} />
+      </Helmet>
 
 
-        {/* <Link to="/" src={CloseIcon} role={CloseButton} /> */}
+      <Wrapper>
+        <ReturnBlock to="/" >
+          <ArrowStyle src={Arrow} alt="arrow" />
+          <span>Все товары</span>
+        </ReturnBlock>
+        <MainBlock>
+          <Animate classNames="animate-photo" timeout={500}>
+            <PhotoStyle>
+              <img src={activeImage} alt={product.title} />
+            </PhotoStyle>
+            <PhotoGalery>
+              {
+                product.photo.length > 1 && product.photo.map(image => {
+                  return (
+
+                    <Image
+                      src={image}
+                      alt={image}
+                      key={image}
+                      onClick={() => handleActiveImage(image)}
+                      isActive={activeImage === image}
+                    />
+
+                  )
+                })
+              }
+            </PhotoGalery>
+          </Animate>
+          <Animate classNames="animate-left-right" timeout={500}>
+            <ContentStyle>
+              <TitleStyle>{product.title}</TitleStyle>
+              <PriceStyle>{product.price} ₾</PriceStyle>
+
+              <ButtonStyle onClick={handleClick}>Добавить в корзину</ButtonStyle>
+
+              <DescriptionStyle>{product.description}</DescriptionStyle>
+            </ContentStyle>
+          </Animate>
 
 
+          {/* <Link to="/" src={CloseIcon} role={CloseButton} /> */}
 
-
-
-      </MainBlock>
-    </Wrapper>
-    // </Block>
-    // </BouncyDiv>
-
+        </MainBlock>
+      </Wrapper>
+    </>
 
   )
 }

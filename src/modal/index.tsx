@@ -119,7 +119,7 @@ export default function BasicModal() {
 
   const { register, handleSubmit, getValues, formState: { errors } } = useForm<FormValues>();
   const onSubmit = handleSubmit((data) => {
-    setIsSend(true)
+
 
     const { email, name, textmask } = data;
 
@@ -127,13 +127,15 @@ export default function BasicModal() {
       text: `${textmask} заказ: ${JSON.stringify(state.orders)}`,
       name: name,
       email: email,
+      reply_to: email
     }
 
     send('service_ogwt80f', 'template_7jvuass', toSend, 'fr-wuu4TadkXDU0-p')
       .then((result) => {
         // console.log(result.text);
+        setIsSend(true)
       }, (error) => {
-        // console.log(error.text);
+        alert(error.text);
       });
   });
 

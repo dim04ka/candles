@@ -22,9 +22,9 @@ const router = createBrowserRouter([
     errorElement: <Navigate to="/" />
   },
   {
-    path: "about",
-    element: <div>About</div>,
-    errorElement: <Navigate to="/" />
+    path: "admin",
+    element: <div>Admin panel</div>,
+    errorElement: <Navigate to="/admin" />
   },
   {
     path: "product/:id",
@@ -42,6 +42,7 @@ function App() {
 
   return (
     <>
+    <div className="info">🔥 Наш новый сайт | Our new site 😊 <a href="https://www.candles.digital">candles.digital</a></div>
       <HelmetProvider>
         <div className="App">
 

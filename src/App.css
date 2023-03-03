@@ -230,3 +230,15 @@
   /* animation: startSvechi 1s forwards; */
   animation: animation2 1.5s forwards;
 }
+
+.info {
+  text-align: center;
+  font-size: 20px;
+  background: blanchedalmond;
+  padding: 20px;
+}
+
+.info a {
+  text-decoration: none;
+  font-weight: bold;
+}
